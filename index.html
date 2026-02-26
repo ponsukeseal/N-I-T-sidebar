@@ -58,6 +58,16 @@ body{
   margin:4px 0;
   font-size:15px;
 }
+@keyframes auraFlow{
+  0%{ box-shadow:0 0 10px #00ffe1; }
+  50%{ box-shadow:0 0 25px #00ffe1,0 0 50px #00ffe1; }
+  100%{ box-shadow:0 0 10px #00ffe1; }
+}
+
+/* apply to all panels */
+.panel{
+  animation:auraFlow 3s ease-in-out infinite;
+}
 
 </style>
 </head>
