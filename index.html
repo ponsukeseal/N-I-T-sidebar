@@ -62,11 +62,20 @@ Discipline • Strategy • Victory
 </audio>
 </div>
 
-<!-- newest members -->
-<div class="box">
+<div class="panel">
 <div class="title">🥷 Newest Ninjas</div>
-<ul id="members">Loading...</ul>
+<div id="members">Loading...</div>
 </div>
+
+<script>
+fetch("https://api.chess.com/pub/club/ninja-in-training/members")
+.then(r=>r.json())
+.then(data=>{
+let newest = data.all.slice(-6).reverse();
+document.getElementById("members").innerHTML =
+newest.map(u=>`<div class="rank"><span>@${u.username}</span></div>`).join("");
+});
+</script>
 
 <!-- ranks -->
 <div class="box">
