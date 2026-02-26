@@ -124,7 +124,13 @@ fetch("https://api.chess.com/pub/club/ninja-in-training/members")
 let newest = data.weekly.slice(0,6);
 
 document.getElementById("members").innerHTML =
-newest.map(u=>`<div class="rank">@${u.username}</div>`).join("");
+newest.map(u=>`
+<div class="rank">
+<a href="https://www.chess.com/member/${u.username}" target="_blank">
+@${u.username}
+</a>
+</div>
+`).join("");
 });
 </script>
 
