@@ -211,6 +211,45 @@ document.body.addEventListener("click",()=>{
 
 <!-- CURSOR TRAIL -->
 <div id="trail"></div>
+<script>
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
 
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+let particles=[];
+
+for(let i=0;i<60;i++){
+ particles.push({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*2+1,
+  d:Math.random()*0.5+0.2
+ });
+}
+
+function draw(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle="rgba(255,215,0,0.7)";
+ particles.forEach(p=>{
+  ctx.beginPath();
+  ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+  ctx.fill();
+  p.y-=p.d;
+  if(p.y<0)p.y=canvas.height;
+ });
+ requestAnimationFrame(draw);
+}
+draw();
+
+/* CURSOR TRAIL */
+const trail=document.getElementById("trail");
+document.addEventListener("mousemove",e=>{
+ trail.style.left=e.clientX+"px";
+ trail.style.top=e.clientY+"px";
+});
+</script>
 </body>
 </html>
