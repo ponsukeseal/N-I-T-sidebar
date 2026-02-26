@@ -67,6 +67,73 @@ body{
 .panel{
   animation:auraFlow 3s ease-in-out infinite;
 }
+/* particles background */
+#particles{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ z-index:-1;
+}
+
+/* mist overlay */
+body::before{
+ content:"";
+ position:fixed;
+ inset:0;
+ background:radial-gradient(circle at 30% 40%,rgba(255,255,255,0.06),transparent 60%);
+ animation:fogMove 18s linear infinite;
+ pointer-events:none;
+}
+
+@keyframes fogMove{
+ 0%{transform:translateX(-10%)}
+ 50%{transform:translateX(10%)}
+ 100%{transform:translateX(-10%)}
+}
+
+/* animated border */
+.panel{
+ position:relative;
+ overflow:hidden;
+}
+
+.panel::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ border-radius:12px;
+ padding:2px;
+ background:linear-gradient(45deg,gold,orange,gold);
+ background-size:300% 300%;
+ animation:borderFlow 6s linear infinite;
+ -webkit-mask:
+  linear-gradient(#000 0 0) content-box,
+  linear-gradient(#000 0 0);
+ -webkit-mask-composite:xor;
+ mask-composite:exclude;
+ pointer-events:none;
+}
+
+@keyframes borderFlow{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+/* cursor trail */
+#trail{
+ position:fixed;
+ width:12px;
+ height:12px;
+ border-radius:50%;
+ background:gold;
+ pointer-events:none;
+ box-shadow:0 0 15px gold,0 0 30px orange;
+ transform:translate(-50%,-50%);
+ z-index:9999;
+}
 
 </style>
 </head>
