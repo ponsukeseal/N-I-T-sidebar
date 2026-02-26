@@ -77,14 +77,7 @@ body{
  z-index:-1;
 }
 
-/* mist overlay */
-body::before{
- content:"";
- position:fixed;
- inset:0;
- background:radial-gradient(circle at 30% 40%,rgba(255,255,255,0.06),transparent 60%);
- animation:fogMove 18s linear infinite;
- pointer-events:none;
+
 }
 
 @keyframes fogMove{
