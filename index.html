@@ -11,13 +11,23 @@ body{
   text-align:center;
 }
 
-/* panels */
-.box{
-  background:linear-gradient(135deg,#141e30,#243b55);
+.panel{
+  background:#0d0d0d;
+  border:2px solid #2b2b2b;
+  border-radius:12px;
   margin:12px;
   padding:12px;
-  border-radius:14px;
-  box-shadow:0 0 14px rgba(0,0,0,.6);
+  box-shadow:0 0 15px #000;
+  transition:all 0.3s ease;
+}
+
+.panel:hover{
+  box-shadow:
+    0 0 15px #00ffe1,
+    0 0 30px #00ffe1,
+    0 0 60px #00ffe1;
+  transform:scale(1.03);
+}
 }
 
 /* welcome */
