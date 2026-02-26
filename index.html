@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI;
+  color:white;
+  background:#0f172a;
+  text-align:center;
+}
+
+/* panels */
+.box{
+  background:linear-gradient(135deg,#141e30,#243b55);
+  margin:12px;
+  padding:12px;
+  border-radius:14px;
+  box-shadow:0 0 14px rgba(0,0,0,.6);
+}
+
+/* welcome */
+.welcome{
+  background:linear-gradient(135deg,#8B0000,#d4af37);
+}
+
+/* music */
+.music{
+  background:linear-gradient(135deg,#1a1a2e,#16213e);
+}
+
+/* titles */
+.title{
+  font-weight:bold;
+  margin-bottom:8px;
+  letter-spacing:1px;
+}
+
+/* glow names */
+.jonin{color:#fff;text-shadow:0 0 8px gold,0 0 16px orange;}
+.chunin{color:#e6ffff;text-shadow:0 0 8px cyan,0 0 16px #00bcd4;}
+.genin{color:#eaffea;text-shadow:0 0 8px #7cff7c,0 0 14px #00e676;}
+
+ul{padding:0;margin:0}
+li{list-style:none;margin:4px}
+</style>
+</head>
+<body>
+
+<!-- welcome -->
+<div class="box welcome">
+<div class="title">🥋 Welcome to the Dojo</div>
+Discipline • Strategy • Victory
+</div>
+
+<!-- music -->
+<div class="box music">
+<div class="title">🎵 Dojo Theme</div>
+<audio controls style="width:100%">
+<source src="https://files.catbox.moe/dgzkq3.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<!-- newest members -->
+<div class="box">
+<div class="title">🥷 Newest Ninjas</div>
+<ul id="members">Loading...</ul>
+</div>
+
+<!-- ranks -->
+<div class="box">
+<div class="title">🏯 Dojo Masters</div>
+
+<div style="color:gold">⚔ Jonin</div>
+<div class="jonin">@SS_GRAFFER</div>
+<div class="jonin">@ponsukeseal</div>
+
+<br>
+
+<div style="color:#00e5ff">🥷 Chunin</div>
+<div class="chunin">@Poseidonson-45</div>
+<div class="chunin">@Phoenix_0_O</div>
+
+<br>
+
+<div style="color:#7cff7c">🌱 Genin</div>
+<div class="genin">@Bartholomeaw</div>
+<div class="genin">@TheImmortal0_0</div>
+<div class="genin">@DOC-OF-THUGS</div>
+<div class="genin">@JAX-XDS</div>
+
+</div>
+
+<script>
+fetch("https://api.chess.com/pub/club/ninja-in-training/members")
+.then(r=>r.json())
+.then(d=>{
+ let all=[...d.weekly,...d.monthly,...d.all_time];
+ all.sort((a,b)=>b.joined-a.joined);
+ let newest=all.slice(0,6);
+ document.getElementById("members").innerHTML=
+ newest.map(x=>`<li>@${x.username}</li>`).join("");
+});
+</script>
+
+</body>
+</html>
