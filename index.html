@@ -71,7 +71,8 @@ Discipline • Strategy • Victory
 fetch("https://api.chess.com/pub/club/ninja-in-training/members")
 .then(r=>r.json())
 .then(data=>{
-let newest = data.all.slice(-6).reverse();
+let newest = data.weekly.slice(0,6);
+
 document.getElementById("members").innerHTML =
 newest.map(u=>`<div class="rank"><span>@${u.username}</span></div>`).join("");
 });
