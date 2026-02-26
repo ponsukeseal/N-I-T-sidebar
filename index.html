@@ -67,16 +67,6 @@ Discipline • Strategy • Victory
 <div id="members">Loading...</div>
 </div>
 
-<script>
-fetch("https://api.chess.com/pub/club/ninja-in-training/members")
-.then(r=>r.json())
-.then(data=>{
-let newest = data.weekly.slice(0,6);
-
-document.getElementById("members").innerHTML =
-newest.map(u=>`<div class="rank"><span>@${u.username}</span></div>`).join("");
-});
-</script>
 
 <!-- ranks -->
 <div class="box">
@@ -105,12 +95,11 @@ newest.map(u=>`<div class="rank"><span>@${u.username}</span></div>`).join("");
 <script>
 fetch("https://api.chess.com/pub/club/ninja-in-training/members")
 .then(r=>r.json())
-.then(d=>{
- let all=[...d.weekly,...d.monthly,...d.all_time];
- all.sort((a,b)=>b.joined-a.joined);
- let newest=all.slice(0,6);
- document.getElementById("members").innerHTML=
- newest.map(x=>`<li>@${x.username}</li>`).join("");
+.then(data=>{
+let newest = data.weekly.slice(0,6);
+
+document.getElementById("members").innerHTML =
+newest.map(u=>`<div class="rank"><span>@${u.username}</span></div>`).join("");
 });
 </script>
 
