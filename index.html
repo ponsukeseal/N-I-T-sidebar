@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <style>
+
 body{
   margin:0;
   font-family:Segoe UI;
@@ -11,6 +12,7 @@ body{
   text-align:center;
 }
 
+/* panel base */
 .panel{
   background:#0d0d0d;
   border:2px solid #2b2b2b;
@@ -21,6 +23,7 @@ body{
   transition:all 0.3s ease;
 }
 
+/* hover glow */
 .panel:hover{
   box-shadow:
     0 0 15px #00ffe1,
@@ -29,12 +32,11 @@ body{
   transform:scale(1.03);
 }
 
-/* welcome */
+/* themed panels */
 .welcome{
   background:linear-gradient(135deg,#8B0000,#d4af37);
 }
 
-/* music */
 .music{
   background:linear-gradient(135deg,#1a1a2e,#16213e);
 }
@@ -44,41 +46,45 @@ body{
   font-weight:bold;
   margin-bottom:8px;
   letter-spacing:1px;
+  font-size:18px;
 }
 
-/* glow names */
+/* glow ranks */
 .jonin{color:#fff;text-shadow:0 0 8px gold,0 0 16px orange;}
 .chunin{color:#e6ffff;text-shadow:0 0 8px cyan,0 0 16px #00bcd4;}
 .genin{color:#eaffea;text-shadow:0 0 8px #7cff7c,0 0 14px #00e676;}
 
-ul{padding:0;margin:0}
-li{list-style:none;margin:4px}
+.rank{
+  margin:4px 0;
+  font-size:15px;
+}
+
 </style>
 </head>
 <body>
 
 <!-- welcome -->
-<div class="box welcome">
+<div class="panel welcome">
 <div class="title">🥋 Welcome to the Dojo</div>
 Discipline • Strategy • Victory
 </div>
 
 <!-- music -->
-<div class="box music">
+<div class="panel music">
 <div class="title">🎵 Dojo Theme</div>
 <audio controls style="width:100%">
 <source src="https://files.catbox.moe/scl7k1.mp3" type="audio/mpeg">
 </audio>
 </div>
 
+<!-- newest members -->
 <div class="panel">
-<div class="title">🥷 Newest Ninjas</div>
+<div class="title">🥷 Active Ninjas</div>
 <div id="members">Loading...</div>
 </div>
 
-
 <!-- ranks -->
-<div class="box">
+<div class="panel">
 <div class="title">🏯 Dojo Masters</div>
 
 <div style="color:gold">⚔ Jonin</div>
@@ -108,9 +114,11 @@ fetch("https://api.chess.com/pub/club/ninja-in-training/members")
 let newest = data.weekly.slice(0,6);
 
 document.getElementById("members").innerHTML =
-newest.map(u=>`<div class="rank"><span>@${u.username}</span></div>`).join("");
+newest.map(u=>`<div class="rank">@${u.username}</div>`).join("");
 });
 </script>
+
+<!-- autoplay music -->
 <audio autoplay loop muted id="bgmusic">
   <source src="https://files.catbox.moe/scl7k1.mp3" type="audio/mpeg">
 </audio>
